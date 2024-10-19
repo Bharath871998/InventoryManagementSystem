@@ -1,0 +1,23 @@
+<!-- report.html -->
+<center>
+  <h1>Inventory Report</h1>
+  <p>Total Inventory Value: {{ total_inventory_value }}</p>
+
+  <h2>Products</h2>
+  <table>
+    <tr>
+      <th>Product Name</th>
+      <th>Quantity</th>
+      <th>Price</th>
+    </tr>
+    {% for product in products %}
+    <tr>
+      <td>{{ product.name }}</td>
+      <td>{{ product.quantity }}</td>
+      <td>{{ product.price }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+  <br>
+  <a href="{% url 'products' %}">Back to Product</a>
+</center>

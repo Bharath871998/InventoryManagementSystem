@@ -1,0 +1,22 @@
+<center>
+    <h1>Product Details</h1>
+    <p>Product Name: {{ product.name }}</p>
+    <p>Product Description: {{ product.description }}</p>
+    <p>SKU: {{ product.sku }}</p>
+    <p>Price: ₹{{ product.price }}</p>
+    <p>Quantity: {{ product.quantity }}</p>
+    <p>Category: {{ product.category.name }}</p>
+    
+    {% if user.is_staff %}
+        {% if product.is_low_stock %}
+            <p style="color: red;">Low Stock Alert: Only {{ product.quantity }} left!</p>
+        {% endif %}
+        <a href="{% url 'update_product' product.pk %}">Edit</a> | 
+        <a href="{% url 'delete_product' product.pk %}">Delete</a> |
+        <a href="{% url 'change_stock' product.pk %}">Change Stock</a> |
+    {% endif %}
+    <a href="{% url 'products' %}">Back to Product</a>
+</center>
+
+
+

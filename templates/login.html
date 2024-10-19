@@ -1,0 +1,23 @@
+{% block body %}
+            <center>
+            <h1>Login</h1>
+<section class="container">
+    <div class="row justify-content-around mt-4 ">
+        <div class="col-sm-3">
+            <form action="login" method="post" class="text-white bg-dark p-3 rounded shadow" autocomplete="off">
+                {% csrf_token %}
+                <input class="form-control" type="text" name="username" placeholder="UserName"><br>
+                <input class="form-control" type="password" name="password" placeholder="Password">
+                <p>Not a member? <a href="signup">Register</a></p>
+                <input type="Submit" class="btn btn-success">
+            </form>
+                <div class="row justify-content-around mt-3">
+                    {% for message in messages %}
+                    <h3 class="text-danger"> {{message}} </h3>
+                    {% endfor %}
+                </div>
+            </center>
+        </div>
+    </div>
+</section>
+{% endblock body %}

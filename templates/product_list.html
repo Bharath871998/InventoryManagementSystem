@@ -1,0 +1,48 @@
+{% block body %}
+<center>
+    <h1>Inventory Management System</h1>
+    <br>
+    {% if user.is_authenticated %}
+
+    <h2>Product List</h2>
+    <br>
+       <a href="{% url 'report_view' %}">View Inventory Report</a>
+    <ul>
+        {% for product in products %}
+        <li>
+            <a href="{% url 'product_detail' product.pk%}">{{ product.name }}</a>
+            {% if user.is_staff %}
+                <a href="{% url 'update_product' product.pk %}">Edit</a>
+                <a href="{% url 'delete_product' product.pk %}">Delete</a>
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+
+    {% if user.is_staff %}
+    <a href="{% url 'create_product' %}">Create New Product</a>
+    {% endif %}
+    <br>
+    <!-- <a  href="{% url 'logout' %}">Logout</a> -->
+
+    <br>
+    <li class="nav-link fas fa-user" style="color:black"> Hello, {{user.username}} </li>
+    
+    <li class="nav-item ">
+        <a class="nav-link fa fa-sign-out-alt" style="color:black" href="{% url 'logout' %}">
+            Logout</a>
+    </li>
+    {% else %}
+    <li class="nav-item ">
+        <a class="nav-link fas fa-user-plus" style="color:black" href="{% url 'signup' %}">
+            Sign-up</a>
+    </li>
+    <li class="nav-item ">
+        <a class="nav-link fa fa-sign-in-alt" style="color:black" href="{% url 'login' %}">
+            Login</a>
+    </li>
+</ul>
+{% endif %}
+    
+</center>
+    {% endblock body%}

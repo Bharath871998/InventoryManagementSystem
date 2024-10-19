@@ -1,0 +1,25 @@
+<center>
+    <h1>Update Stock for {{ product.name }}</h1>
+  
+    <form method="post">
+      {% csrf_token %}
+      
+      <label for="quantity_change">Quantity Change:</label>
+      <input type="number" name="quantity_change" required /><br />
+  
+      <label for="reason">Reason for Stock Change:</label>
+      <select name="reason" required>
+        <option value="ADDITION">Stock Addition</option>
+        <option value="REMOVAL">Stock Removal</option>
+        <option value="SOLD OUT">Sold Out</option>
+        <option value="RETURN">Return</option>
+        <option value="DAMAGE">Damage</option>
+        <option value="DISPOSAL">Disposal</option>
+      </select><br />
+  
+      <button type="submit">Update Stock</button>
+    </form>
+  
+    <a href="{% url 'product_detail' product.pk %}">Back to Product</a>
+  </center>
+  
